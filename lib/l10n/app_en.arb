@@ -1,0 +1,16 @@
+{
+  "dashboard": "Dashboard",
+  "users": "Users",
+  "shop": "Shop",
+  "t_dairy": "T-Dairy",
+  "currency": "Currency",
+  "menu": "Menu",
+
+  "home": "Home",
+  "carousel_album": "Carousel Album",
+  "attendance": "Attendance",
+  "theme": "Theme",
+  "sign_out": "Sign out",
+
+  "album": "Album"
+}
