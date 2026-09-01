@@ -37,7 +37,7 @@ class ProductScreen extends StatelessWidget {
     if(productViewModel.isLoading) {
       ///Shimmer Skeleton
       return ListView.builder(
-      itemCount: 10,
+      itemCount: productViewModel.product.length,
       itemBuilder: (context, index) {
         final product = productViewModel.product[index];
         return Shimmer.fromColors(
@@ -51,7 +51,6 @@ class ProductScreen extends StatelessWidget {
             ),
             title: Text(product.title),
             subtitle: Text(product.price.toString()),
-            trailing: const Icon(Icons.delete, color: Colors.white),
           ),
         );
       },
@@ -65,12 +64,6 @@ class ProductScreen extends StatelessWidget {
           final product = productViewModel.product[index];
           return ListTile(
             trailing:
-            // IconButton(
-            //     onPressed: (){
-            //       context.push('/edit/${product.id}', extra: product,);
-            //     },
-            //     icon: Icon(Icons.edit,size: 15,)
-            // ),
             IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {

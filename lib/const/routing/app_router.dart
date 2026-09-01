@@ -8,6 +8,7 @@ import 'package:mvvm_consepts/const/theme/colorscheme_example.dart';
 import 'package:mvvm_consepts/dashboard.dart';
 import 'package:mvvm_consepts/features/punching_time/views/attendance_navbar.dart';
 import 'package:mvvm_consepts/features/store/views/product_update_screen.dart';
+import 'package:mvvm_consepts/main.dart';
 import '../../features/auth/views/splash_screen.dart';
 import '../../features/store/models/product_model.dart';
 import '../../features/store/views/add_product_screen.dart';
@@ -25,6 +26,7 @@ List<String> images = [
 ];
 class AppRouter {
 static final GoRouter router =GoRouter(
+  navigatorKey: navigatorKey,
   initialLocation: "/login",
   routes: [
     GoRoute(

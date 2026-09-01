@@ -6,6 +6,7 @@ import 'const/global_widgets/bottom_navigation_bar/navigation_view.dart';
 import 'const/global_widgets/bottom_navigation_bar/navigation_viewmodel.dart';
 import 'const/global_widgets/custom_gradient_appbar.dart';
 import 'const/global_widgets/drawer/navigation_drawer.dart';
+import 'const/service/notification_service.dart';
 import 'features/currency/views/currency_convert_view.dart';
 import 'features/store/views/product_screen.dart';
 import 'features/store/views/user_screen.dart';
@@ -49,7 +50,15 @@ class Dashboard extends StatelessWidget {
       create: (_) => NavigationViewModel(),
       child: ReusableNavShell(
         navItems: tabs,
-        appBar: CustomGradientAppBar(title: language.dashboard),
+        appBar: CustomGradientAppBar(title: language.dashboard ,actions: [
+          IconButton(
+          icon: const Icon(Icons.notifications,color: Colors.deepOrange,),
+          onPressed: (){
+            ForegroundBanner.show(
+                title: "Local",
+                message: "Notification"
+            );          },
+        ),],),
         drawer: const NavDrawer(),
       ),
     );
