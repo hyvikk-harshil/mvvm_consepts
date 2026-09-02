@@ -10,6 +10,8 @@ import 'package:mvvm_consepts/features/store/viewmodels/product_viewmodel.dart';
 import 'package:mvvm_consepts/features/store/viewmodels/update_product_viewmodel.dart';
 import 'package:mvvm_consepts/firebase_options.dart';
 import 'package:provider/provider.dart';
+import 'const/network/network_connectivity_checker.dart';
+import 'const/network/network_manager.dart';
 import 'const/routing/app_router.dart';
 import 'const/service/notification_service.dart';
 import 'const/theme/app_theme.dart';
@@ -77,6 +79,99 @@ class MyApp extends StatelessWidget {
         Locale('gu')
         ],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+
+      builder: (context, child) {
+        return GlobalNetworkObserver(
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
     );
     }
 }
+
+
+/// check only device network is connected or not
+/*class GlobalNetworkObserver extends StatefulWidget {
+  final Widget child;
+  const GlobalNetworkObserver({super.key, required this.child});
+
+  @override
+  State<GlobalNetworkObserver> createState() => _GlobalNetworkObserverState();
+}
+
+class _GlobalNetworkObserverState extends State<GlobalNetworkObserver> with NetworkCheckerMixin {
+  @override
+  Widget build(BuildContext context) {
+    return widget.child; // Keeps rendering your app pages underneath safely
+  }
+}*/
+
+
+
+
+class GlobalNetworkObserver extends StatelessWidget {
+  final Widget child;
+  const GlobalNetworkObserver({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final networkManager = NetworkManager();
+    final statusBarHeight = MediaQuery.of(context).padding.top;
+
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: ListenableBuilder(
+        listenable: networkManager,
+        builder: (context, _) {
+          final state = networkManager.currentStatus;
+
+          return Stack(
+            children: [
+              // The application screens run normally underneath
+              child,
+
+              // Animated Top Warning Banner
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.fastOutSlowIn,
+                top: state == NetworkState.good ? -100 : 0, // Slides out of view if speed is good
+                left: 0,
+                right: 0,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    padding: EdgeInsets.only(top: statusBarHeight + 8, bottom: 8, left: 16, right: 16),
+                    color: state == NetworkState.disconnected ? Colors.red.shade800 : Colors.orange.shade800,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          state == NetworkState.disconnected
+                              ? Icons.wifi_off
+                              : Icons.signal_cellular_connected_no_internet_4_bar,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          state == NetworkState.disconnected ? "No Internet Connection" : "Your network is weak",
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+

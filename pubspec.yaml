@@ -55,6 +55,7 @@ dependencies:
   # For Firebase Notification
   firebase_core: ^4.12.1
   firebase_messaging: ^16.6.0
+  connectivity_plus: ^7.3.1    #Check Internet connection
 
 dev_dependencies:
   flutter_test:

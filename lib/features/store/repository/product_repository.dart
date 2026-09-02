@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mvvm_consepts/features/store/models/product_model.dart';
 
+import '../../../const/network/network_manager.dart';
+
 final String baseUrl = "https://fakestoreapi.com";
+final NetworkBoundClient _client = NetworkBoundClient();
 
 class ProductRepository {
   Future<List<ProductModel>> fetchProducts()async{
-    final response = await http.get(Uri.parse("$baseUrl/products"));
+    final response = await _client.get(Uri.parse("$baseUrl/products"));
     if(response.statusCode == 200){
       List<dynamic> data = json.decode(response.body);
      return data.map((toElement)=>ProductModel.fromJson(toElement)).toList();
@@ -17,7 +20,7 @@ class ProductRepository {
   }
 
   Future<ProductModel> getProductByID(int id) async {
-    final response = await http.get(Uri.parse("$baseUrl/products/$id"),);
+    final response = await _client.get(Uri.parse("$baseUrl/products/$id"),);
     if(response.statusCode == 200){
       return ProductModel.fromJson(json.decode(response.body));
     }
@@ -27,7 +30,7 @@ class ProductRepository {
   }
 
   Future<ProductModel> addProduct(ProductModel newProduct) async{
-    final response = await http.post(
+    final response = await _client.post(
       Uri.parse("$baseUrl/Products"),
       headers: {'content-Type': 'application/json'},
       body: json.encode({
@@ -48,7 +51,7 @@ class ProductRepository {
   }
 
   Future<ProductModel> updateProduct(int id, ProductModel updatedProduct) async {
-    final response = await http.put(Uri.parse("$baseUrl/products/$id"),
+    final response = await _client.put(Uri.parse("$baseUrl/products/$id"),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -71,7 +74,7 @@ class ProductRepository {
 
 
   Future<void> deleteProduct(int id) async {
-    final response = await http.delete(
+    final response = await _client.delete(
       Uri.parse('$baseUrl/products/$id'),
     );
 
