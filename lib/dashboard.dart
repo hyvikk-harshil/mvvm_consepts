@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'const/global_widgets/bottom_navigation_bar/navigation_model.dart';
@@ -58,7 +59,28 @@ class Dashboard extends StatelessWidget {
                 title: "Local",
                 message: "Notification"
             );          },
-        ),],),
+        ),
+          IconButton(
+          icon: const Icon(Icons.chat_bubble_outline,color: Colors.white,),
+          onPressed: (){
+            // Navigates cleanly by passing data straight into the path parameters map
+            context.pushNamed(
+              'chat_room',
+              pathParameters: {
+                'chatRoomId': 'room_abc123', // Unique combination of user IDs
+                'peerUsername': 'Harshil',
+              },
+            );
+            },
+        ),
+          IconButton(
+            icon: const Icon(Icons.chat_bubble, color: Colors.white),
+            onPressed: () {
+              // Navigates cleanly out to the standalone Chat Inbox screen
+              context.pushNamed('chat_inbox');
+            },
+          ),
+      ],),
         drawer: const NavDrawer(),
       ),
     );

@@ -15,6 +15,7 @@ import 'const/network/network_manager.dart';
 import 'const/routing/app_router.dart';
 import 'const/service/notification_service.dart';
 import 'const/theme/app_theme.dart';
+import 'features/chat/view_models/chat_inbox_view_model.dart';
 import 'features/currency/repositorys/currency_repository.dart';
 import 'features/currency/view_models/currency_viewmodel.dart';
 import 'features/punching_time/repositorys/attendance_repository.dart';
@@ -54,6 +55,7 @@ Future<void> main() async {
             ChangeNotifierProvider(create: (_)=>UserViewModel()..loadUsers()),
             ChangeNotifierProvider(create: (_)=>UpdateProductViewmodel()),
             ChangeNotifierProvider(create: (_)=>DeleteProductViewmodel()),
+            ChangeNotifierProvider(create: (_)=>ChatInboxViewModel()),
           ],
       child: const MyApp(),)
   );
@@ -105,7 +107,6 @@ class _GlobalNetworkObserverState extends State<GlobalNetworkObserver> with Netw
     return widget.child; // Keeps rendering your app pages underneath safely
   }
 }*/
-
 
 
 

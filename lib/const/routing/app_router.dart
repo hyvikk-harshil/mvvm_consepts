@@ -10,6 +10,8 @@ import 'package:mvvm_consepts/features/punching_time/views/attendance_navbar.dar
 import 'package:mvvm_consepts/features/store/views/product_update_screen.dart';
 import 'package:mvvm_consepts/main.dart';
 import '../../features/auth/views/splash_screen.dart';
+import '../../features/chat/views/chat_inbox_screen.dart';
+import '../../features/chat/views/chat_room_screen.dart';
 import '../../features/store/models/product_model.dart';
 import '../../features/store/views/add_product_screen.dart';
 import '../../features/store/views/product_detail_screen.dart';
@@ -94,6 +96,29 @@ static final GoRouter router =GoRouter(
     GoRoute(
         path: "/rewarded_ad",
         builder: (context, state) => const RewardedAdExample()
+    ),
+
+
+    // 📩 CHAT INBOX ROUTE: Displays list of all active chats
+    GoRoute(
+      path: '/chat-inbox',
+      name: 'chat_inbox',
+      builder: (context, state) => const ChatInboxScreen(),
+    ),
+    GoRoute(
+      // The path uses ':' to specify dynamic parameters in the URL
+      path: '/chat/:chatRoomId/:peerUsername',
+      name: 'chat_room',
+      builder: (context, state) {
+        // Extract the route parameters safely from the state object
+        final chatRoomId = state.pathParameters['chatRoomId']!;
+        final peerUsername = state.pathParameters['peerUsername']!;
+
+        return ChatRoomScreen(
+          chatRoomId: chatRoomId,
+          peerUsername: peerUsername,
+        );
+      },
     ),
   ]
 );
