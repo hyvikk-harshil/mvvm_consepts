@@ -45,7 +45,7 @@ class _NavDrawerState extends State<NavDrawer> {
             Navigator.pop(context); // Closes the drawer safely
               if (i == 0) context.go('/dashboard');
               if (i == 1) context.go('/carousel');
-              if (i == 2) context.go('/attendance');
+              if (i == 2) context.go('/other_menu');
               if (i == 3) {
                 await authProvider.logOutUser();
                 if (!context.mounted) return;
@@ -88,7 +88,7 @@ class _NavDrawerState extends State<NavDrawer> {
              NavigationDrawerDestination(
                 icon: Icon(Icons.photo_album_outlined), label: Text(lang.carousel_album)),
              NavigationDrawerDestination(
-                icon: Icon(Icons.fingerprint), label: Text(lang.attendance)),
+                icon: Icon(Icons.keyboard_option_key), label: Text("Other Menu")),
 
             Row(
               children: [

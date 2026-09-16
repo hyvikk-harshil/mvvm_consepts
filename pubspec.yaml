@@ -57,6 +57,9 @@ dependencies:
   firebase_messaging: ^16.6.0
   connectivity_plus: ^7.3.1    #Check Internet connection
   cloud_firestore: ^6.9.0  # For real-time WhatsApp cloud streaming
+
+  google_generative_ai: ^0.4.7 #Chat With Gemini
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -6,12 +6,14 @@ import 'package:mvvm_consepts/const/google_service/interstitial_ad_example.dart'
 import 'package:mvvm_consepts/const/google_service/rewarded_ad_example.dart';
 import 'package:mvvm_consepts/const/theme/colorscheme_example.dart';
 import 'package:mvvm_consepts/dashboard.dart';
-import 'package:mvvm_consepts/features/punching_time/views/attendance_navbar.dart';
+import 'package:mvvm_consepts/features/punching_time/views/navbar.dart';
 import 'package:mvvm_consepts/features/store/views/product_update_screen.dart';
 import 'package:mvvm_consepts/main.dart';
 import '../../features/auth/views/splash_screen.dart';
 import '../../features/chat/views/chat_inbox_screen.dart';
 import '../../features/chat/views/chat_room_screen.dart';
+import '../../features/gemini_chat/chat_with_gemini.dart';
+import '../../features/gemini_chat/multi_turn_gemini_chat_screen.dart';
 import '../../features/store/models/product_model.dart';
 import '../../features/store/views/add_product_screen.dart';
 import '../../features/store/views/product_detail_screen.dart';
@@ -40,13 +42,13 @@ static final GoRouter router =GoRouter(
       builder: (context, state) => UniversalCarouselSlider(images: images,aspectRatio: 2.0,)
     ),
     GoRoute(
-        path: "/attendance",
-      builder: (context, state) => AttendanceNavBar()
+        path: "/other_menu",
+      builder: (context, state) => NavBar()
     ),
-    GoRoute(
-        path: "/color",
-      builder: (context, state) => ColorSchemeExample()
-    ),
+    // GoRoute(
+    //  NavBar",
+    //   builder: (context, state) => ColorSchemeExample()
+    // ),
 
     GoRoute(
         path: "/dashboard",
@@ -120,6 +122,17 @@ static final GoRouter router =GoRouter(
         );
       },
     ),
+
+    ///Gemini Chat Feature
+    GoRoute(
+        path: "/gemini-chat",
+        builder: (context, state) => const ChatScreen()
+    ),
+    GoRoute(
+        path: "/multi-turn-chat-logs",
+        builder: (context, state) => const MultiTurnChatScreen()
+    ),
+
   ]
 );
 }
