@@ -59,6 +59,7 @@ dependencies:
   cloud_firestore: ^6.9.0  # For real-time WhatsApp cloud streaming
 
   google_generative_ai: ^0.4.7 #Chat With Gemini
+  path_provider: ^2.1.6 #find a path from mobile device.
 
 dev_dependencies:
   flutter_test:

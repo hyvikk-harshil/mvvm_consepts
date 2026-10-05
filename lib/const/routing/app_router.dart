@@ -14,6 +14,7 @@ import '../../features/chat/views/chat_inbox_screen.dart';
 import '../../features/chat/views/chat_room_screen.dart';
 import '../../features/gemini_chat/chat_with_gemini.dart';
 import '../../features/gemini_chat/multi_turn_gemini_chat_screen.dart';
+import '../../features/gemini_chat_bote/view/chat_bot_screen.dart';
 import '../../features/store/models/product_model.dart';
 import '../../features/store/views/add_product_screen.dart';
 import '../../features/store/views/product_detail_screen.dart';
@@ -131,6 +132,10 @@ static final GoRouter router =GoRouter(
     GoRoute(
         path: "/multi-turn-chat-logs",
         builder: (context, state) => const MultiTurnChatScreen()
+    ),
+    GoRoute(
+        path: "/gemini-chat-bot",
+        builder: (context, state) => const ChatBotScreen()
     ),
 
   ]

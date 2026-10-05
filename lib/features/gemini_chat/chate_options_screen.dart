@@ -53,6 +53,21 @@ class _ChatOptionsScreenState extends State<ChatOptionsScreen> {
                 ],
               ),
             ),
+            Card(
+              color: Theme.of(context).colorScheme.primary,
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.all_inclusive, color: Theme.of(context).colorScheme.surface),
+                    onPressed: () {
+                      // Navigates cleanly out to the standalone Chat Inbox screen
+                      context.push("/gemini-chat-bot");
+                    },
+                  ),
+                  Text("  : ChatBote using Gemini Module",style: TextStyle(color: Theme.of(context).colorScheme.surface),)
+                ],
+              ),
+            ),
           ],
         ),
       ),
